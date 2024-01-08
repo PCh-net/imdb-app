@@ -136,7 +136,7 @@ const Movies: React.FC = () => {
     <Layout>
       <Helmet>
         <title>Top Movies by IMDb Rating | IMDb API App</title>
-        <meta name="description" content="Discover the top movies by IMDb Rating.." />
+        <meta name="description" content="Discover the top movies by IMDb Rating." />
         <meta property="og:title" content="Top Movies by IMDb Rating | IMDb API App" />
         <meta property="og:description" content="Discover the top movies by IMDb Rating." />
         <meta property="og:image" content={firstImage} />

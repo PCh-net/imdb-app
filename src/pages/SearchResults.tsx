@@ -45,7 +45,7 @@ const SearchResults: React.FC = () => {
           if (response.data.Search.length > 0) {
             setFirstImage(response.data.Search[0].Poster);
           } else {
-            setFirstImage('dd'); // 
+            setFirstImage(''); // 
           }
 
         } else {
