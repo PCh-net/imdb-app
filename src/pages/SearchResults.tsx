@@ -49,15 +49,14 @@ const SearchResults: React.FC = () => {
       }
     };
 
+    fetchMovies();
+
     if (movies.length > 0) {
       setFirstImage(movies[0].Poster);
     } else {
       setFirstImage('');
     }
-
-
-
-    fetchMovies();
+    
   }, [searchTerm, currentPage]);
 
 
