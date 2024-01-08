@@ -41,6 +41,13 @@ const SearchResults: React.FC = () => {
         if (response.data?.Search) {
           setMovies(response.data.Search);
           setTotalResults(parseInt(response.data.totalResults, 10));
+
+          if (response.data.Search.length > 0) {
+            setFirstImage(response.data.Search[0].Poster);
+          } else {
+            setFirstImage('dd'); // 
+          }
+
         } else {
           console.error('Invalid response from API:', response.data);
         }
@@ -51,12 +58,8 @@ const SearchResults: React.FC = () => {
 
     fetchMovies();
 
-    if (movies.length > 0) {
-      setFirstImage(movies[0].Poster);
-    } else {
-      setFirstImage('');
-    }
-    
+    console.log(firstImage);
+
   }, [searchTerm, currentPage]);
 
 
