@@ -34,18 +34,19 @@ const Home: React.FC = () => {
     const fetchData = async () => {
       try {
         // API
-        const categories = ['Animation', 'Sport', 'Comedy', 'Romance', 'Sci-Fi'];
+        const categories = ['Animation', 'Sport', 'Comedy', 'Horror', 'Sci-Fi'];
         const maxResults = 4; // 
 
-        // unikalny zakres dat dla każdej kategorii
+        // unikalny zakres dat
         const dateRanges = [
           '1980-01-01,1990-12-31',
           '2000-01-01,2012-12-31',
           '1990-01-01,2000-12-31',
         ];
+        
         const apiKey = process.env.REACT_APP_OMDB_API_KEY;
         const requests = categories.map((category, index) =>
-          axios.get(`https://www.omdbapi.com/?apikey=${apiKey}&type=movie&s=${category}&y=${dateRanges[index]}`)
+          axios.get(`https://www.omdbapi.com/?apikey=${apiKey}&type=movie&s=${category}&y=2023-2024`)
         );
 
         const responses = await Promise.all(requests);
@@ -67,7 +68,6 @@ const Home: React.FC = () => {
         }
 
         setBestMovies(bestMoviesData);
-
 
       } catch (error) {
         console.error('Error fetching best movies:', error);
@@ -137,7 +137,21 @@ const Home: React.FC = () => {
                     <div className='flex flex-col items-center drop-shadow-md hover:drop-shadow-xl bg-blend-color'>
                       <h1 className='text-xl text-lime-900 text-center line-clamp-2 text-ellipsis min-h-[2rem]'>{movie.Title}</h1>
                       <h2 className='text-xl text-lime-900 text-center'>({movie.Year})</h2>
-                      <img src={movie.Poster} alt={`${movie.Title} Poster`} title={`Title: ${movie.Title}`} className='mb-2 w-full h-auto max-h-96 object-cover' />
+                      {movie.Poster !== 'N/A' ? (
+                        <img
+                          src={movie.Poster}
+                          alt={`${movie.Title} Poster`}
+                          title={`Title: ${movie.Title}`}
+                          className='mb-2 w-full h-auto max-h-96 object-cover'
+                        />
+                      ) : (
+                        <img
+                          src='/image/poster-2.jpg'
+                          alt={`${movie.Title} Poster`}
+                          title={`Title: ${movie.Title}`}
+                          className='mb-2 w-full h-auto max-h-96 object-cover'
+                        />
+                      )}
                       <CustomButton size="text-xl truncate" fullWidth={true}>{movie.Title}</CustomButton>
                     </div>
                   </div>
@@ -149,12 +163,14 @@ const Home: React.FC = () => {
                   <div className='bg-gradient-to-r from-lime-500 via-lime-400 to-lime-500 hover:bg-gradient-to-br font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'>
                     <div className='flex flex-col items-center drop-shadow-md hover:drop-shadow-xl bg-blend-color'>
                       <h1 className='text-xl text-lime-900 text-center'>Top Movies by IMDb Rating</h1>
-                      <CustomButton size="text-xl truncate" fullWidth={true}><FontAwesomeIcon icon={faStar} />&emsp;Check movies&emsp;<FontAwesomeIcon icon={faStar} /></CustomButton>
+                      <CustomButton fullWidth={true}>
+                          <FontAwesomeIcon icon={faStar} className='animate__animated animate__heartBeat animate__infinite' />&emsp;Check movies&emsp;<FontAwesomeIcon className='animate__animated animate__heartBeat animate__infinite' icon={faStar} />
+                        </CustomButton>
                     </div>
                   </div>
                 </Link>
               </li>
-              <BoxLiMore limit={5} randomize={true} />
+              <BoxLiMore limit={7} randomize={true} />
           </ul>
 
         </div>

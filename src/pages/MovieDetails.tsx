@@ -52,6 +52,7 @@ const MovieDetails: React.FC = () => {
     };
 
     fetchMovie();
+
   }, [id]);
 
 
@@ -85,7 +86,7 @@ const MovieDetails: React.FC = () => {
       <div className='md:container md:mx-auto'>
       <SimpleNavbar />
 
-        <div className='bg-gradient-to-r from-lime-500 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'>
+        <div className='bg-gradient-to-r from-lime-500 via-lime-400 to-lime-500 hover:bg-gradient-to-br font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'>
           <div className='flex flex-col items-center drop-shadow-md hover:drop-shadow-xl bg-blend-color'>
             <h1 className='text-3xl text-lime-950'>{movie.Title}</h1>
             <p className='text-2xl text-lime-900'>{movie.Genre}</p>
